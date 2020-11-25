@@ -18,6 +18,7 @@ class ViewController: UIViewController {
 
     var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>! = nil
     var collectionView: UICollectionView! = nil
+    private var selectedSection = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,14 +38,14 @@ extension ViewController {
             if sectionKind == .userDetail {
                 // Item description
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                      heightDimension: .fractionalWidth(1.0))
+                                                      heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
                 // Group Description
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                       heightDimension: .fractionalWidth(0.8))
+                                                       heightDimension: .estimated(120.0))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                               subitems: [item])
+                                                               subitem: item, count: 1)
                 // Section description
                 let section = NSCollectionLayoutSection(group: group)
 
@@ -62,6 +63,7 @@ extension ViewController {
                                                                subitem: item,
                                                                count: 2)
                 group.interItemSpacing = .fixed(CGFloat(2))
+                group.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .none, top: .fixed(2.0), trailing: .none, bottom: .fixed(2.0))
 
                 // Section Header Description
                 let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
@@ -84,6 +86,12 @@ extension ViewController {
         }, configuration: config)
 
         return layout
+    }
+
+    func updateUI() {
+        var snapshot = dataSource.snapshot(for: .wardrobe)
+        snapshot.deleteAll()
+        dataSource.apply(snapshot, to: .wardrobe, animatingDifferences: true, completion: nil)
     }
 }
 
@@ -126,8 +134,11 @@ extension ViewController {
         }
 
         let headerNib = UINib(nibName: "WardrobeSectionHeader", bundle: nil)
-        let supplementaryRegistration = UICollectionView.SupplementaryRegistration(supplementaryNib: headerNib, elementKind: "Header") { (supplementaryView, string, indexpath) in
-            // Do Nothing
+        let supplementaryRegistration = UICollectionView.SupplementaryRegistration(supplementaryNib: headerNib, elementKind: "Header") { [weak self]  (supplementaryView, string, indexpath) in
+            if let headerView = supplementaryView as? WardrobeSectionHeader {
+                guard let self = self else { return }
+                headerView.sectionSelector.addTarget(self, action: #selector(self.didChangeSection(_:)), for: .valueChanged)
+            }
         }
 
         dataSource.supplementaryViewProvider = { (view, kind, index) in
@@ -142,14 +153,21 @@ extension ViewController {
             }
 
             if $0 == .wardrobe {
-                let products = Array(1...6).map {
-                    Product(name: "Product\($0)", image: "Item\($0)")
+                let products = Array(1...99).map {
+                    Product(name: "Product\($0)", image: "Item\(Int.random(in: 1...6))")
                 }
                 snapshot.appendItems(products)
             }
         }
 
         dataSource.apply(snapshot)
+    }
+
+    @objc func didChangeSection(_ segmentControl: UISegmentedControl) {
+        if selectedSection != segmentControl.selectedSegmentIndex {
+            selectedSection = segmentControl.selectedSegmentIndex
+            updateUI()
+        }
     }
 }
 
