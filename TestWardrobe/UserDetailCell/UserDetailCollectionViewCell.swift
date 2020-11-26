@@ -7,6 +7,18 @@
 
 import UIKit
 
+internal struct User: Hashable {
+    let name: String
+    let followersCount: String
+    let followingCount: String
+    let trailsCount: String
+    let profileImage: String
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(profileImage)
+    }
+}
+
 class UserDetailCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var profilePicture: UIImageView!
@@ -19,5 +31,13 @@ class UserDetailCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2
         self.profilePicture.clipsToBounds = true
+    }
+
+    internal func configure(_ user: User) {
+        nameLabel.text = user.name
+        followersLabel.text = user.followersCount
+        followingLabel.text = user.followingCount
+        trialsLabel.text = user.trailsCount
+        profilePicture.image = UIImage(named: user.profileImage)
     }
 }

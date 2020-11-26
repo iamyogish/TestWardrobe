@@ -29,4 +29,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
 
+    internal func configure(_ product: Product) {
+        productImageView.image = UIImage(named: product.image)
+    }
 }
