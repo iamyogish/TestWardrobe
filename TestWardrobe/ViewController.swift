@@ -227,7 +227,7 @@ extension ViewController {
 
     internal func getProducts() -> [Product] {
         self.products.removeAll()
-        let products = Array(1...99).map {
+        let products = Array(1...100).map {
             Product(name: "Product\($0)", image: "Item\(Int.random(in: 1...6))")
         }
         self.products = products

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -30,7 +31,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="Av6-Tl-Tnf">
-                        <rect key="frame" x="92" y="22.5" width="197" height="40.5"/>
+                        <rect key="frame" x="100" y="22.5" width="181" height="40.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ufB-3T-OEa">
                                 <rect key="frame" x="0.0" y="0.0" width="54" height="40.5"/>
@@ -50,7 +51,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cJ8-qJ-MHL">
-                                <rect key="frame" x="83.5" y="0.0" width="53.5" height="40.5"/>
+                                <rect key="frame" x="75.5" y="0.0" width="53.5" height="40.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="855" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VS0-S4-ggb">
                                         <rect key="frame" x="0.0" y="0.0" width="53.5" height="18"/>
@@ -67,7 +68,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UmW-kb-ZdA">
-                                <rect key="frame" x="166.5" y="0.0" width="30.5" height="40.5"/>
+                                <rect key="frame" x="150.5" y="0.0" width="30.5" height="40.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXe-yq-BYt">
                                         <rect key="frame" x="0.0" y="0.0" width="30.5" height="18"/>
@@ -94,8 +95,8 @@
                 <constraint firstItem="Av6-Tl-Tnf" firstAttribute="centerY" secondItem="MPO-L5-Xfd" secondAttribute="centerY" id="ATb-lA-hxk"/>
                 <constraint firstItem="MPO-L5-Xfd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="NiV-v7-U3j"/>
                 <constraint firstItem="72f-h9-3BH" firstAttribute="leading" secondItem="MPO-L5-Xfd" secondAttribute="leading" id="lcL-xQ-EOK"/>
-                <constraint firstAttribute="trailing" secondItem="Av6-Tl-Tnf" secondAttribute="trailing" constant="16" id="lfU-K5-J15"/>
-                <constraint firstItem="Av6-Tl-Tnf" firstAttribute="leading" secondItem="MPO-L5-Xfd" secondAttribute="trailing" constant="16" id="rXJ-fa-P7D"/>
+                <constraint firstAttribute="trailing" secondItem="Av6-Tl-Tnf" secondAttribute="trailing" constant="24" id="lfU-K5-J15"/>
+                <constraint firstItem="Av6-Tl-Tnf" firstAttribute="leading" secondItem="MPO-L5-Xfd" secondAttribute="trailing" constant="24" id="rXJ-fa-P7D"/>
             </constraints>
             <size key="customSize" width="305" height="119"/>
             <connections>
